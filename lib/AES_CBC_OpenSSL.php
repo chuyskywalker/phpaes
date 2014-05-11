@@ -26,7 +26,6 @@ class AES_CBC_OpenSSL extends AES_CBC {
         return openssl_encrypt($text, $this->aesmode, $this->getKey(), OPENSSL_RAW_DATA, $this->getIv());
     }
 
-
     /** @inheritdoc */
     public function decrypt($cipherText) {
         return openssl_decrypt($cipherText, $this->aesmode, $this->getKey(), OPENSSL_RAW_DATA, $this->getIv());

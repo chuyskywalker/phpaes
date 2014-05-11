@@ -11,9 +11,12 @@ class AES_CBC_Mcrypt extends AES_CBC {
     function __construct(Padder $padder) {
         $this->padder = $padder;
         // AES always usese RIJNDAEL_128 (16 byte block size)
-        // We're using CBC mode because ECB is rather insecure, as exampled
-        // in this image of "Tux" encrypted with ECB:
+        //
+        // We're using CBC mode because ECB is rather insecure, as
+        // demonstrated in this image of "Tux" encrypted with ECB:
+        //
         //  - http://upload.wikimedia.org/wikipedia/commons/f/f0/Tux_ecb.jpg
+        //
         $this->mcryptResource = mcrypt_module_open(MCRYPT_RIJNDAEL_128, '', MCRYPT_MODE_CBC, '');
     }
 
