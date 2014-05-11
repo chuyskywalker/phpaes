@@ -69,6 +69,16 @@ class PKCS7Test extends PHPUnit_Framework_TestCase {
             array('123', 4, 4),
             array('123', 5, 5),
 
+            // some tricky binary padding problems
+            array('123456789012' . chr(0) . chr(0), 16, 16),
+            array('1234567890123' . chr(0) . chr(0), 16, 16),
+            array('12345678901234' . chr(0) . chr(0), 16, 32),
+
+            // this one is good to ensure you're not trimming EXTRA binary
+            // characters that were part of the original string -- zero padding
+            // falls suspect to this and a bad pkcs would as well.
+            array('123456789012' . chr(2) . chr(2), 16, 16)
+
         );
     }
 
