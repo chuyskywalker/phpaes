@@ -4,6 +4,7 @@ require __DIR__ . '/Encryption.php';
 require __DIR__ . '/Padder.php';
 require __DIR__ . '/NoPad.php';
 require __DIR__ . '/PKCS7.php';
+require __DIR__ . '/AES_CBC.php';
 require __DIR__ . '/AES_CBC_Mcrypt.php';
 require __DIR__ . '/AES_CBC_OpenSSL.php';
 

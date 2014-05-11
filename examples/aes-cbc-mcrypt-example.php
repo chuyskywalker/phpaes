@@ -8,7 +8,8 @@ $pkcs7 = new PKCS7();
 $aescbc = new AES_CBC_Mcrypt($pkcs7);
 
 foreach ($keys as $keylen => $key) {
-    $aescbc->create($key, $iv);
+    $aescbc->setKey($key);
+    $aescbc->setIv($iv);
     foreach ($testTexts as $plainText) {
         $cipherText  = $aescbc->encrypt($plainText);
         $decodedText = $aescbc->decrypt($cipherText);

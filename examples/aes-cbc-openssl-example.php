@@ -6,7 +6,8 @@ require __DIR__ . '/text-keys.php';
 $aescbc = new AES_CBC_OpenSSL();
 
 foreach ($keys as $keylen => $key) {
-    $aescbc->create($key, $iv);
+    $aescbc->setKey($key);
+    $aescbc->setIv($iv);
     foreach ($testTexts as $plainText) {
         $cipherText  = $aescbc->encrypt($plainText);
         $decodedText = $aescbc->decrypt($cipherText);

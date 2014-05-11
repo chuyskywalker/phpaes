@@ -21,11 +21,12 @@ $results = array(); // array('ext', 'keylen', 'textsize', '(en/de)code', 'ops/se
 $aesMcrypt = new AES_CBC_Mcrypt(new PKCS7());
 $aesOpenssl= new AES_CBC_OpenSSL();
 
-foreach (array('mcrypt' => $aesMcrypt, 'openssl' => $aesOpenssl) as $methodName => $method) {
+foreach (array('mcrypt' => $aesMcrypt, 'openssl' => $aesOpenssl) as $methodName => $method) { /** @var AES_CBC $method */
     foreach ($texts as $textDesc => $secretText) {
         foreach ($keys as $keyLen => $key) {
 
-            $method->create($key, '1234567890123456'); // non-real iv, but ok for demo
+            $method->setKey($key);
+            $method->setIv('1234567890123456'); // non-real iv, but ok for demo
 
             $s = microtime(true);
             for ($i=$itterations; $i > 0; $i--) {
