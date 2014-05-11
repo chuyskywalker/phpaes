@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/../lib/all.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 $texts = array(
     'short'  => 'Hello, world!',
@@ -18,10 +18,10 @@ $itterations = 500;
 
 $results = array(); // array('ext', 'keylen', 'textsize', '(en/de)code', 'ops/sec')
 
-$aesMcrypt = new AES_CBC_Mcrypt(new PKCS7());
-$aesOpenssl= new AES_CBC_OpenSSL();
+$aesMcrypt = new phpaes\AES_CBC_Mcrypt(new phpaes\PKCS7());
+$aesOpenssl= new phpaes\AES_CBC_OpenSSL();
 
-foreach (array('mcrypt' => $aesMcrypt, 'openssl' => $aesOpenssl) as $methodName => $method) { /** @var AES_CBC $method */
+foreach (array('mcrypt' => $aesMcrypt, 'openssl' => $aesOpenssl) as $methodName => $method) { /** @var phpaes\AES $method */
     foreach ($texts as $textDesc => $secretText) {
         foreach ($keys as $keyLen => $key) {
 
@@ -60,4 +60,5 @@ foreach (array('mcrypt' => $aesMcrypt, 'openssl' => $aesOpenssl) as $methodName 
     }
 }
 
-echo "Results:\n" . renderTable($results) . "\n";
+$util = new phpaes\Util();
+echo "Results:\n" . $util->renderTable($results) . "\n";

@@ -1,5 +1,7 @@
 <?php
 
+namespace phpaes;
+
 /**
  * You'll note that this class doesn't do it's own padding.
  *
@@ -10,14 +12,14 @@
  * your data with whatever method you like before pushing it into
  * these methods.
  */
-class AES_CBC_OpenSSL extends AES_CBC {
+class AES_CBC_OpenSSL extends AES {
 
     /** @var string */
     private $aesmode = '';
 
     public function setKey($key) {
         parent::setKey($key);
-        // Transform the key into the bit size and return the openssl mode string
+        // Transform the key into the bit size and set the openssl mode string
         $this->aesmode = 'aes-'.(8*strlen($key)).'-cbc';
     }
 

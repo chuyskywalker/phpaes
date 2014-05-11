@@ -1,5 +1,7 @@
 <?php
 
+namespace phpaes;
+
 /**
  * Class NoPad
  *

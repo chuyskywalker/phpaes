@@ -1,5 +1,7 @@
 <?php
 
+namespace phpaes;
+
 interface Encryption {
 
     /**

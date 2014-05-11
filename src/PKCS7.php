@@ -1,5 +1,7 @@
 <?php
 
+namespace phpaes;
+
 /**
  * Implements PKCS#7 Padding
  */
@@ -14,13 +16,12 @@ class PKCS7 implements Padder {
 
     /** @inheritdoc */
     public function unpad($data) {
-        $pattern = substr($data, -1);
-        $length = ord($pattern);
-        $padding = str_repeat($pattern, $length);
-        $pattern_pos = strlen($data) - $length;
-        if(substr($data, $pattern_pos) == $padding) {
-            return substr($data, 0, $pattern_pos);
-        }
-        return $data;
+        // find the last character
+        $padChar = substr($data, -1);
+        // transform it back to the int of how much the string was padded
+        $padLength = ord($padChar);
+        // return just the text without that many bytes from the end
+        return substr($data, 0, -$padLength);
     }
+
 }

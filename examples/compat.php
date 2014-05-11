@@ -1,11 +1,12 @@
 <?php
 
-require __DIR__ . '/../lib/all.php';
-require __DIR__ . '/text-keys.php';
+require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/shared-data.php';
 
-$aesM = new AES_CBC_Mcrypt(new PKCS7());
+$aesM = new phpaes\AES_CBC_Mcrypt(new phpaes\PKCS7());
 //$aesM = new AES_CBC_Mcrypt(new NoPad()); // Try it with this to see what goes wrong!
-$aesO = new AES_CBC_OpenSSL();
+$aesO = new phpaes\AES_CBC_OpenSSL();
+$util = new phpaes\Util();
 
 foreach ($keys as $keylen => $key) {
 
@@ -32,14 +33,14 @@ foreach ($keys as $keylen => $key) {
         echo "                    Key: ($keylen) $key\n";
         echo "              Plaintext: $plainText\n";
         echo "       Same Cipher Text: " . ($cipherTextM === $cipherTextO ? 'TRUE' : 'FALSE') . "\n";
-//        echo "    mcrypt cipher bytes: " . bytestring($cipherTextM) . "\n";
-//        echo "   openssl cipher bytes: " . bytestring($cipherTextO) . "\n";
+//        echo "    mcrypt cipher bytes: " . $util->bytestring($cipherTextM) . "\n";
+//        echo "   openssl cipher bytes: " . $util->bytestring($cipherTextO) . "\n";
         echo "      Same Decoded Text: " . ($decodedTextM === $decodedTextO ? 'TRUE' : 'FALSE') . "\n";
-//        echo "    mcrypt decode bytes: " . bytestring($decodedTextM) . "\n";
-//        echo "   openssl decode bytes: " . bytestring($decodedTextO) . "\n";
+//        echo "    mcrypt decode bytes: " . $util->bytestring($decodedTextM) . "\n";
+//        echo "   openssl decode bytes: " . $util->bytestring($decodedTextO) . "\n";
         echo "Same Cross Decoded Text: " . ($decodedTextMx === $decodedTextOx ? 'TRUE' : 'FALSE') . "\n";
-//        echo "   mcrypt xdecode bytes: " . bytestring($decodedTextMx) . "\n";
-//        echo "  openssl xdecode bytes: " . bytestring($decodedTextOx) . "\n";
+//        echo "   mcrypt xdecode bytes: " . $util->bytestring($decodedTextMx) . "\n";
+//        echo "  openssl xdecode bytes: " . $util->bytestring($decodedTextOx) . "\n";
 
     }
 

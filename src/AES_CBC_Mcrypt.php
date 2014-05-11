@@ -1,6 +1,8 @@
 <?php
 
-class AES_CBC_Mcrypt extends AES_CBC {
+namespace phpaes;
+
+class AES_CBC_Mcrypt extends AES {
 
     /** @var Padder */
     private $padder;
