@@ -15,6 +15,9 @@ abstract class AES implements Encryption {
      * @throws \InvalidArgumentException
      */
     public function setIv($iv) {
+        if (!is_string($iv)) {
+            throw new \InvalidArgumentException("IV must be a string");
+        }
         if (strlen($iv) != 16) {
             throw new \InvalidArgumentException("IV length must be 16 bytes");
         }
@@ -26,6 +29,9 @@ abstract class AES implements Encryption {
      * @throws \InvalidArgumentException
      */
     public function setKey($key) {
+        if (!is_string($key)) {
+            throw new \InvalidArgumentException("Key must be a string");
+        }
         if (!in_array(strlen($key), array(16,24,32))) {
             throw new \InvalidArgumentException("Key length must be 16, 24, or 32 bytes");
         }
