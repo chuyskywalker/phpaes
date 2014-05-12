@@ -1,6 +1,6 @@
 {
     "name": "chuyskywalker/phpaes",
-    "description": "PHP AES -- Complete, Accurate AES in PHP",
+    "description": "PHP AES -- Accurate & Fast AES in PHP",
     "type": "library",
     "keywords": ["aes", "encryption", "mcrypt", "openssl"],
     "homepage": "https://github.com/chuyskywalker/phpaes",
