@@ -1,8 +1,8 @@
 phpaes
 ======
 
-A class for doing AES encryption with mcrypt OR openssl. Includes benchmarks,
-full unit tests, and cross-crypt validation.
+A class for performing AES encryption with mcrypt or openssl.
+Includes benchmarks, full unit tests, and cross-engine validation.
 
 [![Build Status](https://travis-ci.org/chuyskywalker/phpaes.svg?branch=master)](https://travis-ci.org/chuyskywalker/phpaes)
 
