@@ -12,7 +12,7 @@ class AES_CBC_Mcrypt extends AES {
 
     function __construct(Padder $padder) {
         $this->padder = $padder;
-        // AES always usese RIJNDAEL_128 (16 byte block size)
+        // AES always uses RIJNDAEL_128 (16 byte block size)
         //
         // We're using CBC mode because ECB is rather insecure, as
         // demonstrated in this image of "Tux" encrypted with ECB:
@@ -39,5 +39,4 @@ class AES_CBC_Mcrypt extends AES {
         $decrypted_text = $this->padder->unpad($decrypted_and_padded_text);
         return $decrypted_text;
     }
-
 }
