@@ -17,6 +17,10 @@ class AESTest extends PHPUnit_Framework_TestCase {
             array('1234567890123456'),
             array('123456789012345612345678'),
             array('12345678901234561234567890123456'),
+            // You'll note that the UTF-8 characters cound as 2 bytes, thus the "character" count is one less.
+            array('ä34567890123456'),
+            array('ä3456789012345612345678'),
+            array('ä345678901234561234567890123456'),
         );
     }
 
@@ -36,6 +40,10 @@ class AESTest extends PHPUnit_Framework_TestCase {
             array('x1234567890123456'),
             array('x123456789012345612345678'),
             array('x12345678901234561234567890123456'),
+            // this may look like 32 bytes, but in UTF8, it's really 64!
+            array('ääääääääääääääääääääääääääääääää'),
+            // Again, looks even closer (16 characters!), but this is 17 bytes
+            array('ä234567890123456'),
         );
     }
 
@@ -76,6 +84,12 @@ class AESTest extends PHPUnit_Framework_TestCase {
             array('6s54df8sef838f6d'),
             array('OLJ(&O(&UF)(*$GY'),
             array('0000000000000000'),
+            // Here we have utf8 characters which takes up 2 bytes each, thus the character count is lower
+            array('ä34567890123456'),
+            array('äs54df8sef838f6'),
+            array('äLJ(&O(&UF)(*$G'),
+            array('ä00000000000000'),
+            array('ääääääää'),
         );
     }
 
@@ -95,6 +109,9 @@ class AESTest extends PHPUnit_Framework_TestCase {
             array('x1234567890123456'),
             array('x12345678901234'),
             array('x1234567890123456123456'),
+            // UTF8 characters take up 2 bytes
+            array('ä3456789012345'),
+            array('ä345678901234567'),
         );
     }
 
