@@ -7,7 +7,7 @@ class Util {
     // Thar' be dragons below
     // aka my crappy copy/pasta helper functions -- don't judge me!
 
-    public function encryption_strlen($str) {
+    public static function encryption_strlen($str) {
         if (\function_exists('mb_strlen')) {
             $length = \mb_strlen($str, '8bit');
             if ($length === FALSE) {
