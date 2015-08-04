@@ -18,7 +18,7 @@ class PKCS7Test extends PHPUnit_Framework_TestCase {
     public function testReturnsExactBlockSize($initialData, $blockSize, $execptedDataLength) {
         $pkcs7 = new phpaes\PKCS7();
         $padded = $pkcs7->pad($initialData, $blockSize);
-        $this->assertSame($execptedDataLength, strlen($padded));
+        $this->assertSame($execptedDataLength, \phpaes\Util::encryption_strlen($padded));
     }
 
     public function blockSizes() {

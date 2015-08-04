@@ -22,7 +22,7 @@ class AES_CBC_OpenSSL extends AES {
     public function setKey($key) {
         parent::setKey($key);
         // Transform the key into the bit size and set the openssl mode string
-        $this->aesmode = 'aes-'.(8*strlen($key)).'-cbc';
+        $this->aesmode = 'aes-'.(8*Util::encryption_strlen($key)).'-cbc';
         // in 5.3 the 3rd option to these calls was a boolean for raw/not raw, but became a bitmask in 5.4
         // pick the right variant like this:
         $this->rawoption = defined('OPENSSL_RAW_DATA') ? OPENSSL_RAW_DATA : true;

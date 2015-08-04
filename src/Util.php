@@ -7,6 +7,18 @@ class Util {
     // Thar' be dragons below
     // aka my crappy copy/pasta helper functions -- don't judge me!
 
+    public static function encryption_strlen($str) {
+        if (\function_exists('mb_strlen')) {
+            $length = \mb_strlen($str, '8bit');
+            if ($length === FALSE) {
+                throw new \Exception("Invalid encoding for mb_strlen()");
+            }
+            return $length;
+        } else {
+            return \strlen($str);
+        }
+    }
+
     public function bytestring($data) {
         $a = new \SplFixedArray(strlen($data));
         for ($i = 0; $i < strlen($data); $i++) {
