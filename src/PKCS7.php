@@ -9,6 +9,9 @@ class PKCS7 implements Padder {
 
     /** @inheritdoc */
     public function pad($data, $block_size) {
+        if ($block_size > 256) {
+            throw new Exception('$block_size may not be more than 256');
+        }
         $padding = $block_size - (Util::encryption_strlen($data) % $block_size);
         $pattern = chr($padding);
         return $data . str_repeat($pattern, $padding);
